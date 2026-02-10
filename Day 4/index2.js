@@ -19,4 +19,4 @@ let r1 = new Rectangle(1, 2, "red");
 let r2 = new Rectangle();
 console.log(r1.area());
 console.log(r1.perimeter());
-console.log(Rectangle.whoamI());       // static methods are methods which are directly attached in class and are not attached in internal objects
+console.log(Rectangle.whoamI());       // static methods are methods which are directly attached in class and are not attached in internal objects 
