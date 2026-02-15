@@ -1,10 +1,12 @@
-const input = ["apple", "banana", "apple", "orange", "banana", "apple"];
-const output = {};
-
-let i = 0;
-for (i; i < input.length; i++) {
-    let word = input[i];
-    output[word] = (output[word] || 0) + 1;
+const input = {
+    fruits: ["apple", "banana"],
+    veggies: ["carrot", "pea"]
 }
 
-console.log(output);
+let result = [];
+
+for(let key in input){
+    result.push(...input[key]);
+}
+
+console.log(result);

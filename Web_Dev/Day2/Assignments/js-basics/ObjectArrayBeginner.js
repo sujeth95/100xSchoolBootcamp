@@ -1,4 +1,4 @@
-// Question 1:
+// ------------ Question 1:------------------------------
 // const input = { food: [10, 20, 30], travel: [5, 15], bills: [40, 60] };
 // const output = {};
 
@@ -31,17 +31,59 @@
 
 // let i = 0;
 // for (i = 0; i < input.length; i++) {
-//   let word = input[i];
-//   count[word] = (count[word] || 0) + 1;
+//   let word = input[i];     // gets the current word.
+//   count[word] = (count[word] || 0) + 1;  // (output[word] || 0) -> treats missing value as 0.
 // }
 // console.log(count);
 
 // Effiecient way of writing the above:
-const input = ["apple", "banana", "apple", "orange", "banana", "apple"];
-const count = {};
+// const input = ["apple", "banana", "apple", "orange", "banana", "apple"];
+// const count = {};
 
-for(let word of input) {
-  count[word] = (count[word] || 0) + 1;
+// for(let word of input) {
+//   count[word] = (count[word] || 0) + 1;
+// }
+
+// console.log(count);
+
+
+//--------------- Question 3---------------------
+// const input = { a: "x", b: "y", c: "z" };
+// let output = {};
+
+// for (const key in input) {
+//     let value = input[key];
+//     output[value] = key;
+// }
+
+// console.log(output);
+
+
+//------------ Question 4 -----------------------
+
+// const input = { a: 10, b: 50, c: 20 };
+// let maxKey = "";
+// let maxValue = -Infinity;
+
+// for(let key in input){
+//     if(input[key] > maxValue){
+//         maxValue = input[key];
+//         maxKey = key;
+//     }
+// }
+
+// console.log(maxKey);
+
+
+// --------------- Question 5 -----------------------
+
+const input = {
+    fruits: ["apple", "banana"],
+    veggies: ["carrot", "pea"]
+};
+let result = [];
+
+for(let key in input){
+    result.push(...input[key]);
 }
-
-console.log(count);
+console.log(result);
