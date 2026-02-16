@@ -1,12 +1,15 @@
 const input = {
-    fruits: ["apple", "banana"],
-    veggies: ["carrot", "pea"]
+    a: 20,
+    b: 60,
+    c: 40,
+    d: 90,
 }
 
-let result = [];
+let output = {};
 
 for(let key in input){
-    result.push(...input[key]);
+    if(input[key] > 50){
+        output[key] = input[key]
+    }
 }
-
-console.log(result);
+console.log(output);

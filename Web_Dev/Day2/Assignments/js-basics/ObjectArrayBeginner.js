@@ -63,7 +63,7 @@
 
 // const input = { a: 10, b: 50, c: 20 };
 // let maxKey = "";
-// let maxValue = -Infinity;
+// let maxValue = 0;
 
 // for(let key in input){
 //     if(input[key] > maxValue){
@@ -72,18 +72,47 @@
 //     }
 // }
 
+/* NOTE:
+    > → keeps first biggest
+    >= → keeps last biggest
+*/
+
 // console.log(maxKey);
 
 
 // --------------- Question 5 -----------------------
 
-const input = {
-    fruits: ["apple", "banana"],
-    veggies: ["carrot", "pea"]
-};
-let result = [];
+// const input = {
+//     fruits: ["apple", "banana"],
+//     veggies: ["carrot", "pea"]
+// };
+// let result = [];
 
-for(let key in input){
-    result.push(...input[key]);
+// for(let key in input){
+//     result.push(...input[key]);
+// }
+
+/*
+    using ...input[key] merges two arrays into one.
+*/
+// console.log(result);
+
+
+// --------------- Question 6 ---------------------------
+const input = [
+    { name: "A", city: "Delhi" },
+    { name: "B", city: "Mumbai" },
+    { name: "C", city: "Delhi" }
+];
+
+let result = {};
+
+for(let person of input){
+    if(!result[person.city]) {
+        result[person.city] = [];
+    }
+
+    result[person.city].push(person.name);
 }
+
 console.log(result);
