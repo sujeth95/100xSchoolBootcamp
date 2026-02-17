@@ -99,20 +99,62 @@
 
 
 // --------------- Question 6 ---------------------------
-const input = [
-    { name: "A", city: "Delhi" },
-    { name: "B", city: "Mumbai" },
-    { name: "C", city: "Delhi" }
-];
+// const input = [
+//     { name: "A", city: "Delhi" },
+//     { name: "B", city: "Mumbai" },
+//     { name: "C", city: "Delhi" }
+// ];
 
-let result = {};
+// let result = {};
 
-for(let person of input){
-    if(!result[person.city]) {
-        result[person.city] = [];
-    }
+// for(let person of input){
+//     if(!result[person.city]) {
+//         result[person.city] = [];
+//     }
 
-    result[person.city].push(person.name);
+//     result[person.city].push(person.name);
+// }
+
+// console.log(result);
+
+
+// ---------------- Question 7 ------------------------------------
+// const input = { a: 20, b: 60, c: 40, d: 90 };
+// let output = {};
+
+// for(let key in input){
+//     if(input[key] > 50){
+//         output[key] = input[key];
+//     }
+// }
+
+// console.log(output);
+
+
+// --------------- Question 8 -------------------------------------
+
+const input = { A: [80, 90], B: [70, 75, 85] };
+
+let maxStudent = "";
+let maxAverage = 0;
+
+for (let student in input) {
+  let marks = input[student];
+
+  // find sum of marks
+  let sum = 0;
+  for (let mark of marks) {
+    sum += mark;
+  }
+
+  // find average
+  let avg = sum / marks.length;
+
+  // check if highest average
+  if (avg > maxAverage) {
+    maxAverage = avg;
+    maxStudent = student;
+  }
 }
 
-console.log(result);
+console.log(maxStudent);

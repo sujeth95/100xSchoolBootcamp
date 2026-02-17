@@ -1,15 +1,25 @@
-const input = {
-    a: 20,
-    b: 60,
-    c: 40,
-    d: 90,
-}
+const input = { a: "x", b: "y", c: "z" }
 
-let output = {};
+let maxStudent = "";
+let maxAverage = 0;
 
-for(let key in input){
-    if(input[key] > 50){
-        output[key] = input[key]
+for(let student in input){
+    let marks = input[student];
+
+    //find sum of marks
+    let sum = 0;
+    for(let mark of marks){
+        sum += mark;
+    }
+
+    // find average
+    let avg = sum / marks.length;
+
+    // check if highest average
+    if(avg > maxAverage){
+        maxAverage = avg;
+        maxStudent = student;
     }
 }
-console.log(output);
+
+console.log(maxStudent);
