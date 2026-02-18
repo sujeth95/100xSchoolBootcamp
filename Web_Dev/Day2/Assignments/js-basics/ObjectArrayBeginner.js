@@ -133,28 +133,115 @@
 
 // --------------- Question 8 -------------------------------------
 
-const input = { A: [80, 90], B: [70, 75, 85] };
+// const input = { A: [80, 90], B: [70, 75, 85] };
 
-let maxStudent = "";
-let maxAverage = 0;
+// let maxStudent = "";
+// let maxAverage = 0;
 
-for (let student in input) {
-  let marks = input[student];
+// for (let student in input) {
+//   let marks = input[student];
 
-  // find sum of marks
-  let sum = 0;
-  for (let mark of marks) {
-    sum += mark;
-  }
+//   // find sum of marks
+//   let sum = 0;
+//   for (let mark of marks) {
+//     sum += mark;
+//   }
 
-  // find average
-  let avg = sum / marks.length;
+//   // find average
+//   let avg = sum / marks.length;
 
-  // check if highest average
-  if (avg > maxAverage) {
-    maxAverage = avg;
-    maxStudent = student;
-  }
+//   // check if highest average
+//   if (avg > maxAverage) {
+//     maxAverage = avg;
+//     maxStudent = student;
+//   }
+// }
+
+// console.log(maxStudent);
+
+
+// ----------------- Question 9 ---------------------------------
+// const input = { x: [1, 2, 3], y: [2, 3, 4], z: [4, 5] };
+// let output = [];
+// let uniqueValue = 0;
+
+// for(let key in input){
+//     for(let value of input[key]){
+//         if(value>uniqueValue){
+//             uniqueValue = value;
+//             output.push(uniqueValue);
+//         }
+//     }
+// }
+
+// console.log(output);
+// console.log(uniqueValue);
+
+
+// -------------------- Question 10 --------------------------------
+// const input = { name: "Rahul", age: 23, city: "Noida" };
+// const keys = ["name", "city"];
+
+// let result = [];
+
+// for(let key of keys){
+//     result[key] = input[key]
+// }
+
+// console.log(result);
+
+
+// -------------------- Question 12 -------------------------------------
+// const input = { a: 3, b: 1, c: 2 };
+
+// // convert object -> array of [key, value]
+// let entries = Object.entries(input);
+
+// //sort by value (small to big)
+// entries.sort((a, b) => a[1] - b[1]);
+
+// console.log(entries);
+
+// OTHER METHOD TO DO THE SAME...............
+// const input = { a: 3, b: 1, c: 2 };
+
+// // get keys and sort them using values
+// let sortedKeys = Object.keys(input).sort((a,b) => input[a] - input[b]);
+
+// //convert to required format
+// let result = [];
+
+// for(let key of sortedKeys) {
+//     result.push([key,input[key]]);
+// }
+
+// console.log(result);
+
+
+// --------------------------- Question 13 ----------------------------------
+// const input = { a: 1, b: 2, c: 3 };
+// let output = "";
+// let counter = 0;
+
+// for(let key in input){
+//     counter ++;
+//     output = counter;
+// }
+
+// console.log(output);
+
+
+// ------------------------------- Question 14 --------------------------------
+function capitalFirstLetter(val){
+    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 
-console.log(maxStudent);
+const input = { name: "alice", city: "delhi" };
+let output = {};
+
+for(let key in input){
+    input[key] = capitalFirstLetter(input[key]);
+    output[key] = input[key];
+}
+
+console.log(output);
