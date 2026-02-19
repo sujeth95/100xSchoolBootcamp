@@ -232,16 +232,100 @@
 
 
 // ------------------------------- Question 14 --------------------------------
-function capitalFirstLetter(val){
-    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
-}
+// function capitalFirstLetter(val){
+//     return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+// }
 
-const input = { name: "alice", city: "delhi" };
-let output = {};
+// const input = { name: "alice", city: "delhi" };
+// let output = {};
+
+// for(let key in input){
+//     input[key] = capitalFirstLetter(input[key]);
+//     output[key] = input[key];
+// }
+
+// console.log(output);
+
+
+
+// ----------------------------- Question 15 --------------------------------------
+// const input = { name: "Alice", age: 25 };
+// let output = "";
+
+// for (let key in input) {
+//     output = output + key + "=" + input[key] + "&";      //output contains undefined so won't gets calculated in the first loop but contains the value (name=Alice&) in second loop.
+// }
+
+// console.log(output);
+
+
+// -------------------------------- Question 16 -------------------------------------------
+// const input = [1, 2, 3, 4, 5, 6];
+// let evenCounter = 0;
+// let oddCounter = 0;
+
+// for (let key in input) {
+//     if (key % 2 == 0) {
+//         evenCounter++;
+//     } else {
+//         oddCounter++;
+//     }
+// }
+
+// console.log({ even: evenCounter, odd: oddCounter});
+
+
+// SHORTER AND CLEANER VERSION OF THE ABOVE SOLUTION:
+// const input = [1, 2, 3, 4, 5, 6];
+// let output = { even: 0, odd: 0 };
+
+// for(let key of input){
+//     key % 2 == 0 ? output.even++ : output.odd++;
+// }
+
+// console.log(output);
+
+
+
+// -------------------------- Question 17 ----------------------------------------------------
+// const input = { a: 1, b: 2, c: 3 };
+// const input2 = { b: 4, c: 5, d: 6 };
+
+// let output = [];
+
+// for (let key in input) {
+//     if (key in input2) {
+//         output.push(key);
+//     }
+// }
+
+// console.log(output);
+
+
+// ------------------------------ Question 18 -----------------------------------------------
+// const input = [
+//     { id: 1, name: "A" },
+//     { id: 2, name: "B" }
+// ];
+
+// let output = {};
+
+// for (let key in input) {
+//     let obj = input[key];
+//     output[obj.id] = obj;
+// }
+// console.log(output);
+
+
+// -------------------------------- Question 19 ---------------------------------------------------
+const input = { a: 1, b: "hello", c: 3 };
+let allNumbers = true;
 
 for(let key in input){
-    input[key] = capitalFirstLetter(input[key]);
-    output[key] = input[key];
+    if(typeof input[key] !== "number"){
+        allNumbers = false;
+        break;  // stop checking if one value is no number;
+    }
 }
 
-console.log(output);
+console.log(allNumbers);

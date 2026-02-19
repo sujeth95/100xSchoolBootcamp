@@ -1,9 +1,11 @@
-const input = { name: "Alice", age: 25 };
-let output = "";
+const input = { a: 1, b: "hello", c: 3 };
+let allNumbers = true;
 
-for (let key in input) {
-    output += key + "=" + input[key] + "&";
+for(let key in input){
+    if(typeof input[key] !== "number"){
+        allNumbers = false;
+        break;
+    }
 }
 
-output = output.slice(0, -1);
-console.log(output);
+console.log(allNumbers);
