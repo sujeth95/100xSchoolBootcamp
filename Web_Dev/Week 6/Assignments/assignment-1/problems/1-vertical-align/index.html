@@ -9,6 +9,7 @@
     <style>
         .container {
             width: 1200px;
+            height: 500px;
             margin: 0 auto;
             background-color: red;
         }
@@ -22,7 +23,9 @@
             flex-direction: column;
         }
         .horizontal-center {
-            margin: 0 auto;
+            /* margin: 0 auto; */
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
@@ -30,7 +33,7 @@
 <body>
     <div class="container">
         <div class="content">
-            <div class="vertical-center" style="background-color: yellow;">
+            <div class="vertical-center" style="background-color: red;">
                 <div class="horizontal-center">
                     <h1>Hello World</h1>
                 </div>
