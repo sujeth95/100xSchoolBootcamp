@@ -25,21 +25,18 @@
   - `npm run test-countVowels`
 */
 
-function countVowels(str) {
-  let vowelResult = "";
-  let countVowels = 0;
 
-  for(let key in str){
-    if(str.charAt(key) == 'a','e','i','o','u' || str.charAt(key) == 'A','E','I','O','U'){
-      countVowels++;
+const countVowels = (str) => {
+  let count = 0;
+  let string = str.toString();
+
+  for (let key in string) {
+    let char = string.charAt(key);
+    if (char == "a" || char == "e" || char == "i" || char == "o" || char == "u"){
+      count++;
     }
   }
-
-  vowelResult = countVowels;
-  return vowelResult;
+  return count;
 }
 
 module.exports = { countVowels };
-
-
-

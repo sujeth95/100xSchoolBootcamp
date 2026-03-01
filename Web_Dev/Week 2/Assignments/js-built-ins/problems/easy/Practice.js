@@ -1,13 +1,12 @@
-// Source - https://stackoverflow.com/a/5668029
-// Posted by typeof, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-02-19, License - CC BY-SA 4.0
+const reverseString = (str) => {
+  let result = "";
+  let char = str.toString();
 
-const arr = [5, 5, 5, 2, 2, 2, 2, 2, 9, 4];
-const counts = {};
-
-for (const num of arr) {
-  counts[num] = counts[num] ? counts[num] + 1 : 1;
+  for (let i = char.length-1; i >= 0; i--) {
+    
+    result += char[i];
+  }
+  return result;
 }
 
-console.log(counts);
-console.log(counts[5], counts[2], counts[9], counts[4]);
+console.log(reverseString("This is Sujeet"));
