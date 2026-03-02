@@ -1,4 +1,4 @@
-/*
+  /*
   Write a function `countVowels` which takes a string as input and returns the count of vowels (both uppercase and lowercase) in the string.
 
   What are vowels?
