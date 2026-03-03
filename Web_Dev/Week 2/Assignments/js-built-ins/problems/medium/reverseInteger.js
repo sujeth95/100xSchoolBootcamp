@@ -22,7 +22,15 @@
 */
 
 function reverseInteger(num) {
-  // Your code here
+  let reversed = parseInt(
+    Math.abs(num).toString().split("").reverse().join("")
+  );
+
+  if (num < 0) {
+    return -reversed;
+  }
+
+  return reversed;
 }
 
 module.exports = reverseInteger;
