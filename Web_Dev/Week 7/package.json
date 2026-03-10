@@ -1,4 +1,4 @@
-{
+:{
   "name": "week-7",
   "version": "1.0.0",
   "main": "index.js",
@@ -9,9 +9,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "express": "^5.2.1",
+    "figlet": "^1.11.0",
     "nodemon": "^3.1.14"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
