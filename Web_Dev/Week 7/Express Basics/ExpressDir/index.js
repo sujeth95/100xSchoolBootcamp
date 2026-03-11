@@ -25,9 +25,17 @@ app.get("/:username/:id", (req, res) => {
 });
 
 app.get("/search", (req, res) => {
-    console.log({ ...req.query });
-    res.send("no result");
-})
+    let { q } = req.query;
+    if (!q) {     // localhost:3000/search? => this is condition 
+        res.send("<h1>nothing searched.</h1>")
+    }
+    res.send(`These are the search result: ${q}`);
+});
+
+// app.get("/search", (req, res) => {
+//     console.log({ ...req.query });
+//     res.send("no result");
+// });
 
 // app.get("/apple", (req, res) => {
 //     res.send("you contacted apple path");
