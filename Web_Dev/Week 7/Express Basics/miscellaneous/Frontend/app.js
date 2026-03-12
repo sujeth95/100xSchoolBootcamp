@@ -1,27 +1,32 @@
-//Each object will get allocated in different memory.
-const stu1 = {
-    name: "adam",
-    age: 25,
-    marks: 95,
-    getMarks: function() {
-        return this.marks;
-    },
-};
+// //Each object will get allocated in different memory.
+// const stu1 = {
+//     name: "adam",
+//     age: 25,
+//     marks: 95,
+//     getMarks: function() {
+//         return this.marks;
+//     },
+// };
 
-const stu2 = {
-    name: "eve",
-    age: 18,
-    marks: 99,
-    getMarks: function() {
-        return this.marks;
-    }
-};
+// const stu2 = {
+//     name: "eve",
+//     age: 18,
+//     marks: 99,
+//     getMarks: function() {
+//         return this.marks;
+//     }
+// };
 
-const stu3 = {
-    name: "casey",
-    age: 23,
-    marks: 85,
-    getMarks: function(){
-        return this.marks;
-    }
+// const stu3 = {
+//     name: "casey",
+//     age: 23,
+//     marks: 85,
+//     getMarks: function(){
+//         return this.marks;
+//     }
+// };
+
+let arr = [1, 2, 3];
+arr.sayHello = () => {
+    console.log("hello!, i am arr");
 };
