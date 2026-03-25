@@ -37,3 +37,14 @@ arr.forEach(print);
 arr.forEach(function (el) {
     console.log(el);
 });
+
+// Maps..........
+let num = [1, 2, 3, 4];
+let double = num.map((el) => {
+    return el * el;
+});
+
+//Reduce Method........
+let nums = [1, 2, 3, 4, 5];
+let finalVal = nums.reduce((res, el) => res + el);
+console.log(finalVal);
