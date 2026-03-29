@@ -16,7 +16,7 @@ changeColor("red", 1000, () => {
             changeColor("purple", 1000);
         });
     });
-})
+});
 
 //NOT A GOOD METHOD......
 // changeColor("red", 1000);
