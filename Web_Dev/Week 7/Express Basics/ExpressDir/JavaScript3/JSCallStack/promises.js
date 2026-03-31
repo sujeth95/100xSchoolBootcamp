@@ -35,10 +35,24 @@ const failure = () => {
 }
 
 // Using async...
-function savetoDb(data, success, failure) {
-    return new Promise((success, failure) => {
-    let internetSpeed = Math.floor(Math.random() * 10) + 1;
-    })
+function savetoDb(data) {
+    return new Promise((resolve, reject) => {
+        let internetSpeed = Math.floor(Math.random() * 10) + 1;
+        if (internetSpeed > 4) {
+            resolve("sucess: data was saved");
+        } else {
+            reject("failure: weak connection");
+        }
+    });
 }
 
-savetoDb("Sujeet Oraon", success, failure);
+let request = savetoDb("Sujeet Oraon");
+request.then(() => {
+    console.log("data1 saved");
+    savetoDb("helloworld").then(() => {
+        console.log("data2 saved");
+    });
+})
+    .catch(() => {
+        console.log("promise was rejected");
+    });
