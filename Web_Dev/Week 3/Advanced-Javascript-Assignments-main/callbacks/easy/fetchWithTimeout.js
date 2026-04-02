@@ -1,5 +1,5 @@
 // Problem Description – fetchWithTimeout(url, ms, callback)
-//
+
 // You are required to write a function named fetchWithTimeout that accepts a URL,
 // a time limit in milliseconds, and a callback function.
 // The function attempts to fetch data from the given URL.
@@ -8,9 +8,31 @@
 // If the operation exceeds the time limit, the callback is invoked with an Error
 // whose message is "Request Timed Out".
 
-
 function fetchWithTimeout(url, ms, callback) {
+    let settled = false;
 
+    const timer = setTimeout(() => {
+        if (settled) {
+            return;
+        }
+        settled = true;
+        callback(new Error("Request Timed Out"));
+    }, ms);
+
+    fetch(url, (err, data) => {
+        if (settled) {
+            return;
+        }
+        settled = true;
+        clearTimeout(timer);
+
+        if (err) {
+            callback(err);
+            return;
+        }
+
+        callback(null, data);
+    });
 }
 
 module.exports = fetchWithTimeout;

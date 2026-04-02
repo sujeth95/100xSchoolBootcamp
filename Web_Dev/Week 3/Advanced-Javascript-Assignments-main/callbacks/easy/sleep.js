@@ -5,7 +5,13 @@
 // The function should wait for the specified time and then invoke the callback.
 
 function sleep(millis, callback) {
-
+    const ans = setInterval(() => {
+        callback();
+    }, millis);
+    
+    return setTimeout(() => {
+        clearInterval(ans);
+    }, millis);
 }
 
 module.exports = sleep;

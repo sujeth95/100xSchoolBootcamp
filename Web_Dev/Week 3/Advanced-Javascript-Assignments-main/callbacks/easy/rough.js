@@ -3,7 +3,7 @@
 //         const params = args.slice(0, -1);
 
 //         if (typeof callback !== 'function') {
-//             throw new TypeError('Last argument must be a callback function');
+//             throw new TypeEr ror('Last argument must be a callback function');
 //         }
 
 //         Promise.resolve()
@@ -12,12 +12,17 @@
 //             .catch((error) => callback(error));
 //     };
 
-function successCallback(result) {
-    console.log(`Audio file ready at URL: ${result}`);
-}
+// function successCallback(result) {
+//     console.log(`Audio file ready at URL: ${result}`);
+// }
 
-function failureCallback(error) {
-    console.error(`Error generating audio file: ${error}`);
-}
+// function failureCallback(error) {
+//     console.error(`Error generating audio file: ${error}`);
+// }
 
-createAudioFileSync(audioSettings).then(successCallback, failureCallback);
+// createAudioFileSync(audioSettings).then(successCallback, failureCallback);
+
+function fetchWithTimeout(url, ms, callback) {
+    const data = fetch(url);
+    
+}

@@ -9,7 +9,19 @@
 
 
 function callbackify(fn) {
-     
+    return function (...args){
+        const callback = args[args.length - 1];
+        const params = args.slice(0, -1);
+
+        if(typeof callback !== 'function'){
+            throw new TypeError('Last argument must be a callback function')
+        }
+
+        Promise.resolve() 
+            .then(() => fn(...params))
+            .then((data) => callback(null,data))
+            .catch((error) => callback(error))
+    }
 }
 
 module.exports = callbackify;
