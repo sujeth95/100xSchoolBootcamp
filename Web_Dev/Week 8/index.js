@@ -4,6 +4,22 @@
 const express = require("express");
 const app = express();
 
+let requestCount = 0;
+
+const middleware = (req, res, next) => {
+    requestCount++;
+    console.log(requestCount, res.method, req.path)
+    next();
+}
+app.use(middleware);
+app.use(express.json());
+
+// USING MIDDLEWARES..
+app.use((req, res, next) => {
+    console.log("hii there");
+    next();
+});
+
 
 app.get("/", (req, res) => {
     // Req -> Domains, ips, routes, methods, body, request headers, query params, path params everything will be handled by this.
@@ -55,6 +71,37 @@ app.get('/multiply/:a/:b', (req, res) => {
     console.log(`The multiple is: ${ans} in PATH Params`)
 })
 
+app.post("/sum", (req, res) => {
+    const a = parseInt(req.body.a);
+    const b = parseInt(req.body.b);
+
+    const ans = a + b;
+    res.json({
+        ans
+    })
+})
+
+app.get("/multiply", (req, res) => {
+    const a = parseInt(req.query.a);
+    const b = parseInt(req.query.b);
+
+    const ans = a * b;
+    res.json({
+        ans
+    })
+})
+
+app.get("/status", (req, res) => {
+    // middleware();
+    res.send("up");
+})
+
+app.get("/requestCount", (req, res) => {
+    // middleware();
+    res.send({
+        requestCount
+    })
+})
 
 const PORT = 3000;
 app.listen(PORT, () => {

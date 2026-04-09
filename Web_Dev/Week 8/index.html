@@ -2,21 +2,38 @@
 
 <head>
     <script>
-        const add = async() => {
+        const add = async () => {
             const a = document.getElementById("first").value;
             const b = document.getElementById("second").value;
 
-            if(a == "" || b == ""){
+            if (a == "" || b == "") {
                 // document.getElementById('response').innerHTML = "Please enter both numbers";
                 alert("Please enter both numbers");
                 return;
             }
-            
+
             try {
-            const res =  await fetch("http://localhost:3000/sum/" + a + "/" + b);
-            const json = await res.json();
-            document.getElementById("response").innerHTML = json.ans;
-            } catch(e){
+                // USING AXIOS..
+                // const response = await axios.post("http://localhost:3000/sum", {
+                //     a,
+                //     b
+                // })
+                // response.data.ans
+
+                // USING FETCH..
+                const res = await fetch("http://localhost:3000/sum/", {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    }, body: JSON.stringify({
+                        a,
+                        b
+                    })
+                });
+
+                const json = await res.json();
+                document.getElementById("response").innerHTML = json.ans;
+            } catch (e) {
                 document.getElementById("response").innerHTML = e;
             }
         }
@@ -33,7 +50,7 @@
     <button>Multiply</button>
 
     <div id="response">
-        
+
     </div>
 </body>
 
