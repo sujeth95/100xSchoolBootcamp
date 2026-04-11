@@ -9,22 +9,22 @@
 // whose message is "Request Timed Out".
 
 function fetchWithTimeout(url, ms, callback) {
-    let settled = false;
+    let flag = false;
 
     const timer = setTimeout(() => {
-        if (settled) {
+        if(flag){
             return;
         }
-        settled = true;
-        callback(new Error("Request Timed Out"));
+        flag = true;
+        callback(new Error('Request Timed Out'));
     }, ms);
 
     fetch(url, (err, data) => {
-        if (settled) {
+        if (flag) {
             return;
         }
-        settled = true;
-        clearTimeout(timer);
+        flag = true;
+        clearTimeout();
 
         if (err) {
             callback(err);
@@ -32,7 +32,7 @@ function fetchWithTimeout(url, ms, callback) {
         }
 
         callback(null, data);
-    });
+    })
 }
 
 module.exports = fetchWithTimeout;

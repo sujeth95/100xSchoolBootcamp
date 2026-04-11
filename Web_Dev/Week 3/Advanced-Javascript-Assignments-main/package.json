@@ -82,7 +82,7 @@
     "createWindowAggregatorPromise": "npx jest ./tests/createWindowAggregatorPromise.test.js",
     "deepClone": "npx jest ./tests/deepClone.test.js",
     "monitorPromise": "npx jest ./tests/monitorPromise.test.js",
-    "PriorityQueueExecutor" : "npx jest ./tests/PriorityQueueExecutor.test.js",
+    "PriorityQueueExecutor": "npx jest ./tests/PriorityQueueExecutor.test.js",
     "raceWithMetadata": "npx jest ./tests/raceWithMetadata.test.js",
     "resolveDependencies": "npx jest ./tests/resolveDependencies.test.js",
     "swrCache": "npx jest ./tests/swrCache.test.js",
@@ -110,6 +110,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^29.7.0"
+    "jest": "^29.7.0",
+    "node-fetch": "^3.3.2"
   }
 }

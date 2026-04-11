@@ -7,7 +7,7 @@
 
 function delay(ms, value, callback) {
     return setTimeout(() => {
-        callback(null, value);
+        callback(null,value);
     }, ms);
 }
 

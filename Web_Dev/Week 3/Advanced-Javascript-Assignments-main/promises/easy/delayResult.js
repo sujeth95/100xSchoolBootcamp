@@ -9,7 +9,11 @@
 
 
 function delayResult(value, ms) {
-
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(value); 
+        }, ms);
+    })
 }
 
 module.exports = delayResult;
