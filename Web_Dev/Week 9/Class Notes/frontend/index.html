@@ -1,0 +1,64 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: space-between; padding: 0px 100px;">
+        <div id="notes">
+            Loading....
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <input style="padding: 50px" type="text" placeholder="Type your notes" id="userNote"/>
+            <button style="padding: 15px; margin-top: 5px;" onclick="addTodo()">Create new note</button>
+        </div>
+    </div>
+
+    <script>
+
+       async function addTodo() {
+            const note = document.getElementById("userNote").value;
+            await axios.post("http://localhost:3000/notes", {
+                note: document.getElementById("userNote").value
+            })
+            document.getElementById("userNote").value = "";
+
+            // show the todo in the frontend
+            const newNode = document.createElement("div");
+
+            newNode.innerHTML = document.getElementById("userNote").value;
+            document.getElementById("notes").appendChild(noteNote);
+
+            // make the input box empty again
+            document.getElementById("userNote").value = "";
+            await getTodos();
+        }
+
+        async function getTodos() {
+
+            // USING FETCH TO GET DATA..
+            // const response = await fetch("http://localhost:3000/notes")
+            // const json = await response.json();
+            // console.log(json.notes);
+
+            // USING AXIOS..
+            const response = await axios.get("http://localhost:3000/notes");
+            const notes = response.data.notes;
+
+            document.getElementById("notes").innerHTML = "";
+
+            for (let i = 0; i < notes.length; i++) {
+                const noteNote = document.createElement("div");
+                noteNote.innerHTML = notes[i];
+                noteNote.setAttribute("style", "border: 2px solid black; padding: 10px;");
+                document.getElementById("notes").appendChild(noteNote);
+            }
+        }
+
+        getTodos();
+    </script>
+</body>
+
+</html>
