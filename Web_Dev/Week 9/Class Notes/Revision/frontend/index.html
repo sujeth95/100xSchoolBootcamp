@@ -10,7 +10,7 @@
             Loading...
         </div>
         <div>
-            <input type="text" placeholder="Type your notes" id="userNote"/>
+            <input type="text" placeholder="Type your notes" id="userNote" />
             <button onclick="addTodo()">Create new note</button>
         </div>
     </div>
@@ -18,11 +18,15 @@
         async function addTodo() {
             await axios.post('http://localhost:3000/notes', {
                 note: document.getElementById("userNote").value
+            }, {
+                headers: {
+                    token: localStorage.getItem("token")
+                }
             })
 
             // show the todo in the frontend
             const newNote = document.createElement("div");
-            
+
             newNote.innerHTML = document.getElementById("userNote").value;
             newNote.setAttribute("style", "border: 2px solid black; padding: 10px")
             document.getElementById("notes").appendChild(newNote)
@@ -39,7 +43,11 @@
             // console.log(json.notes);
 
             // USING AXIOS...
-            const response = await axios.get("http://localhost:3000/notes");
+            const response = await axios.get("http://localhost:3000/notes", {
+                headers: {
+                    token: localStorage.getItem("token")
+                }
+            });
             const notes = response.data.notes;
             // console.log(response.data.notes);
 
