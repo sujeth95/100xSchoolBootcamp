@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/signup.css">
+    <script>
+        const signup = async () => {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const response = await axios.post("http://localhost:3000/signup", {
+                username,
+                password
+            })
+            window.location = '/signin'
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Sign up</h1>
+    <input id="username" placeholder="Enter username" type="text" />
+    <input id="password" placeholder="Enter password" type="password" />
+    <button onclick="signup()">Sign up</button>
+</body>
+
+</html>

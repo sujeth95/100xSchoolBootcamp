@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/topics.css">
+    <script>
+        const fetchTopics = () => {
+            const box1 = document.getElementById("box1").innerHTML;
+            const box2 = document.getElementById("box2").innerHTML;
+            const box3 = document.getElementById("box3").innerHTML;
+
+            const request = axios.post("http://localhost:3000/topics", {
+                box1, box2, box3
+            });
+
+            if (box1) {
+                window.location = '/java'
+            } else if (box2) {
+                window.location = '/javascript'
+            } else if (box3) {
+                window.location = '/css'
+            }
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Select topics</h1>
+    <div class="boxes">
+        <div onclick="fetchTopics()" id="box1">1</div>
+        <div onclick="fetchTopics()" id="box2">2</div>
+        <div onclick="fetchTopics()" id="box3">3</div>
+    </div>
+</body>
+
+</html>

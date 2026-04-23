@@ -1,0 +1,10 @@
+h1{
+    color: brown;
+}
+
+.boxes div{
+    margin: 10px;
+    border: 2px solid red;
+    background-color: orange;
+    cursor: pointer;
+}
