@@ -4,11 +4,11 @@ const { authMiddleware } = require("./middleware");
 const jwt = require("jsonwebtoken");
 
 app.use(express.json());
-const CURRENT_USER_ID = 1;
-const CURRENT_TODO_ID = 1;
+let CURRENT_USER_ID = 1;
+let CURRENT_TODO_ID = 1;
 
-const USERS = [];
-const TODOS = [];
+let USERS = [];
+let TODOS = [];
 
 app.post("/signup", (req, res) => {
     const username = req.body.username;
@@ -22,7 +22,6 @@ app.post("/signup", (req, res) => {
             username,
             password
         })
-        return;
     } else {
         res.status(403).json({
             message: "User already exist"
@@ -32,23 +31,25 @@ app.post("/signup", (req, res) => {
     res.json({
         id: CURRENT_USER_ID - 1
     })
+    console.log(USERS);
+
 })
 
 app.post("/signin", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    const existingUser = USERS.find(u => u.username === password && u.password === password);
+    const existingUser = USERS.find(u => u.username === username && u.password === password);
+    if (!existingUser) {
 
-    if (existingUser) {
-        const token = jwt.verify({
-            userId: userExists.id
-        }, "sujeet123")
-    } else {
-        res.status(403).json({
+        return res.status(403).json({
             message: "User not found"
         })
     }
+    const token = jwt.sign({
+        userId: existingUser.id
+    }, "sujeet123")
+
 
     res.json({
         token
@@ -71,14 +72,15 @@ app.post("/todo", authMiddleware, (req, res) => {
     })
 })
 
-app.delete("/todo/:todoId", (req, res) => {
+app.delete("/todo/:todoId", authMiddleware, (req, res) => {
     const userId = req.userId;
-    const todo = parseInt(req.params.todoId);
+    const todoId = parseInt(req.params.todoId);
 
     const doesUserOwnTodo = TODOS.find(t => t.id === todoId && t.userId === userId);
-
+    console.log(userId)
+    console.log(todoId)
     if (doesUserOwnTodo) {
-        TODOS = TODOS.filter(t => t.id === todoId);
+        TODOS = TODOS.filter(t => t.id !== todoId);
         res.json({
             message: "Deleted"
         })
@@ -92,9 +94,9 @@ app.delete("/todo/:todoId", (req, res) => {
 
 })
 
-app.get("todos", authMiddleware, (req, res) => {
+app.get("/todos", authMiddleware, (req, res) => {
     const userId = req.userId;
-    const userTodos = TODOS.find(t => t.userId === userId); 
+    const userTodos = TODOS.filter(t => t.userId === userId);
     res.json({
         todos: userTodos
     })
