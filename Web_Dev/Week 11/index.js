@@ -110,6 +110,35 @@ app.delete("/todo/:todoId", authMiddleware, async (req, res) => {
 
 })
 
+app.delete("/users/:usersId", authMiddleware, async (req, res) => {
+    const userId = req.userId;
+    const usersId = req.params.usersId;
+
+    const doesUserExist = await userModel.findOne({
+        _id: userId
+    })
+
+    if (doesUserExist) {
+        const deleteUser = await userModel.deleteOne({
+            _id: usersId
+        })
+        res.json({
+            message: "user deleted"
+
+        })
+        if (deleteUser) {
+            await todoModel.deleteMany({
+                userId: usersId
+            })
+        }
+    } else {
+        res.status(403).json({
+            message: "Unauthorized user"
+        })
+    }
+
+})
+
 app.get("/todos", authMiddleware, async (req, res) => {
     const userId = req.userId;
     // const userTodos = TODOS.filter(t => t.userId === userId);
