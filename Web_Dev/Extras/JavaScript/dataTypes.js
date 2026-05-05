@@ -15,3 +15,15 @@
 // typeof => to find the type of data.
 // NOTE: Null is an object and have value 0. (IMPORTANT)
 // NOTE: Type of NaN is a number (IMPORTANT)
+
+// NOTE: Undefined gives false value to every comparison operator.
+// NOTE: Stack(Primitive), Heap (Non-Primitive)
+
+// const gameName = new String("sujeethc")  -> using object for string.
+// console.log(hundreds.toLocaleString('en-IN'));
+
+// DATES
+let myDate = new Date();
+console.log(myDate);
+console.log(myDate.toString());
+console.log(myDate.toDateString());
