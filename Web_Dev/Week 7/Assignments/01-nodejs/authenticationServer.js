@@ -29,78 +29,79 @@
   Testing the server - run `npm run test-authenticationServer` command in terminal
  */
 
-  const express = require("express")
-  const PORT = 3000;
-  const app = express();
-  // write your logic here, DONT WRITE app.listen(3000) when you're running tests, the tests will automatically start the server
-  
-  var users = [];
-  
-  app.use(express.json());
-  app.post("/signup", (req, res) => {
-    var user = req.body;
-    let userAlreadyExists = false;
-    for (var i = 0; i<users.length; i++) {
-      if (users[i].email === user.email) {
-          userAlreadyExists = true;
-          break;
-      }
+const express = require("express")
+const PORT = 3000;
+const app = express();
+// write your logic here, DONT WRITE app.listen(3000) when you're running tests, the tests will automatically start the server
+
+app.use(express.json());
+let users = [];
+
+app.post('/signup', (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+
+  const existingUser = users.find((e) => e.email === email);
+  if (!existingUser) {
+    function randomId(users) {
+      let id;
+      do {
+        id = Math.floor(Math.random() * 10) + 1;
+      } while (users.some(e => e.id === id));
+      return id;
     }
-    if (userAlreadyExists) {
-      res.sendStatus(400);
-    } else {
-      users.push(user);
-      res.status(201).send("Signup successful");
-    }
-  });
+
+    const newId = randomId(users);
+
+    users.push({
+      id: newId,
+      email,
+      password,
+      firstName,
+      lastName
+    })
+    res.status(201).send("Signup successful")
+    return;
+  } else {
+    return res.status(400).json({
+      message: "User already exist"
+    })
+  }
+})
+
+app.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const existingUser = users.find(e => e.email === email && e.password === password);
+
+  if (existingUser) {
+    res.status(200).json({
+      email: existingUser.email,
+      firstName: existingUser.firstName,
+      lastName: existingUser.lastName,
+      authToken: `token${existingUser.id}`
+    })
+    return;
+  } else {
+    res.status(401).send("Invalid credentials");
+    return;
+  }
+});
+
+app.get('/data', (req, res) => {
+  const email = req.headers.email;
+  const password = req.header.password;
+
+  const existingUser = users.find(e => e.username === username && e.password === password);
+
   
-  app.post("/login", (req, res) => {
-    var user = req.body;
-    let userFound = null;
-    for (var i = 0; i<users.length; i++) {
-      if (users[i].email === user.email && users[i].password === user.password) {
-          userFound = users[i];
-          break;
-      }
-    }
-  
-    if (userFound) {
-      res.json({
-          firstName: userFound.firstName,
-          lastName: userFound.lastName,
-          email: userFound.email
-      });
-    } else {
-      res.sendStatus(401);
-    }
-  });
-  
-  app.get("/data", (req, res) => {
-    var email = req.headers.email;
-    var password = req.headers.password;
-    let userFound = false;
-    for (var i = 0; i<users.length; i++) {
-      if (users[i].email === email && users[i].password === password) {
-          userFound = true;
-          break;
-      }
-    }
-  
-    if (userFound) {
-      let usersToReturn = [];
-      for (let i = 0; i<users.length; i++) {
-          usersToReturn.push({
-              firstName: users[i].firstName,
-              lastName: users[i].lastName,
-              email: users[i].email
-          });
-      }
-      res.json({
-          users
-      });
-    } else {
-      res.sendStatus(401);
-    }
-  });
-  
-  module.exports = app;
+})
+
+// app.listen(PORT, () => {
+//   console.log(`Listening on ${PORT}`)
+// })
+
+module.exports = app;
