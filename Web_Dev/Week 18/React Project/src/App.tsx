@@ -5,13 +5,23 @@
 // import './App.css' 
 
 function App() {  /* App component is the first component to render */
+  const posts = [{
+    name: "sujeet",
+    content: "hi there"
+  }, {
+    name: "raman",
+    content: "Hi I just moved to Jharkand"
+  }, {
+    name: "manoj",
+    content: "hii there!!"
+  }];
 
+  let postComponents = posts.map(p => <Post name={p.name} content={p.content} />)
+  
   return (
     <div>
       <h1>Linked!!</h1>
-      <Post name="Sujeet" content="Today is my birthday" />
-      <Post name="Harkirat" content="I have launched a new course" />
-      <Post name="Neha" content="This is me posting my vlog" />
+      {postComponents}
     </div>
   )
 }
