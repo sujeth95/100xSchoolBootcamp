@@ -1,7 +1,7 @@
 const express = require('express');
 const { Pool } = require('pg');
 const pool = new Pool({
-    connectionString: "postgresql://neondb_owner:npg_cWZk9Rx1viqj@ep-winter-breeze-aqqcbcna.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require"
+    connectionString: ""
 })
 
 const app = express();
@@ -15,13 +15,13 @@ app.post("/signup", (req, res) => {
 
     console.log("INSERT INTO users (username, email, password) VALUES ('" + username + "','" + password + "','" + email + "')");
     await pool.query("INSERT INTO users (username, email, password) VALUES ('" + username + "','" + password + "','" + email + "')");
-        
+
     res.json({
         message: "Signup done"
     })
 })
 
-const PORT = 3000;
+const PORT = 
 app.listen(PORT, () => {
     console.log(`Listening on Port ${PORT}`)
 })
