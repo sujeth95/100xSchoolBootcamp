@@ -10,7 +10,67 @@ function App() {
   return (
     <div style={{ height: "100vh", background: "#dfe6e9" }}>
       <ToggleMessage />
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <ToggleMessage />
+      <ToggleMessage />
+    </div>
+  )
+}
+
+// structing your app into components
+// defining a state of your application
+
+
+const ToggleMessage = () => {
+  const [isVisible, setIsVisible] = useState(false); //defining a new state variable
+  // const isVisible = true;
+
+  // NOTE: You should always change stateVariable as such -> setIsVisible(!isVisible);
+
+  // when the value of a state variable changes,
+  // the component that uses the state variables re-renders
+
+  // NOTE: The components with not re-render in react if we don't have a state variable.
+  
+  return (
+    <div>
+      <button onClick={() => setIsVisible(!isVisible)}>
+        Toggle Message
+      </button>
+      {isVisible && <p>This message is conditionally rendered!</p>}
+    </div>
+  );
+};
+
+// const style = { width: 300, backgroundColor: "white", borderRadius: 10, borderColor: "grey", borderWidth: 1, padding: 30 }
+
+// function PostComponents({ name, subtitle, time, image, description }) {
+//   return <div style={style}>
+//     <div style={{ display: "flex" }}>
+//       <img src={image} style={{
+//         width: 50,
+//         height: 50,
+//         borderRadius: 50
+//       }} />
+//       <div style={{ fontSize: 15, marginLeft: 15 }}>
+//         <b>
+//           {name}
+//         </b>
+//         <div>{subtitle}</div>
+//         {/* Adding condition for time */}
+//         {(time !== undefined) ? <div style={{ display: "flex" }}>
+//           <div>{time}</div>
+//           <img src={"https://img.magnific.com/premium-vector/round-wall-clock-cartoon_119631-491.jpg?semt=ais_hybrid&w=740&q=80"} style={{ width: 20, height: 20, marginLeft: 5 }} />
+//         </div> : null}
+//       </div>
+//     </div>
+//     <div style={{ fontSize: 18 }}>
+//       {description}
+//     </div>
+//   </div>
+// }
+
+
+{/* <div style={{ display: "flex", justifyContent: "center" }}>
         <div>
           <div>
             <PostComponents 
@@ -32,53 +92,6 @@ function App() {
             <br></br>
           </div>
         </div>
-      </div>
-    </div>
-  )
-}
-
-// structing your app into components
-// defining a state of your application
-
-const style = { width: 300, backgroundColor: "white", borderRadius: 10, borderColor: "grey", borderWidth: 1, padding: 30 }
-
-const ToggleMessage = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  return (
-    <div>
-      <button onClick={() => setIsVisible(!isVisible)}>
-        Toggle Message
-      </button>
-      {isVisible && <p>This message is conditionally rendered!</p>}
-    </div>
-  );
-};
-
-function PostComponents({ name, subtitle, time, image, description }) {
-  return <div style={style}>
-    <div style={{ display: "flex" }}>
-      <img src={image} style={{
-        width: 50,
-        height: 50,
-        borderRadius: 50
-      }} />
-      <div style={{ fontSize: 15, marginLeft: 15 }}>
-        <b>
-          {name}
-        </b>
-        <div>{subtitle}</div>
-        {/* Adding condition for time */}
-        {(time !== undefined) ? <div style={{ display: "flex" }}>
-          <div>{time}</div>
-          <img src={"https://img.magnific.com/premium-vector/round-wall-clock-cartoon_119631-491.jpg?semt=ais_hybrid&w=740&q=80"} style={{ width: 20, height: 20, marginLeft: 5 }} />
-        </div> : null}
-      </div>
-    </div>
-    <div style={{ fontSize: 18 }}>
-      {description}
-    </div>
-  </div>
-}
+      </div> */}
 
 export default App
