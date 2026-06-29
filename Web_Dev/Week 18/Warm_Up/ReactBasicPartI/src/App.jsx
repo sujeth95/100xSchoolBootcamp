@@ -1,97 +1,171 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-
+import { useState } from "react";
+import { PostComponent } from "./Post";
 
 function App() {
-
-  return (
-    <div style={{ height: "100vh", background: "#dfe6e9" }}>
-      <ToggleMessage />
-      <ToggleMessage />
-      <ToggleMessage />
-    </div>
-  )
+  return <div>
+    hii there
+    <Greeting name={"Sujeet"} />
+    <Greeting name={"Harkirat"} />
+  </div>
 }
 
-// structing your app into components
-// defining a state of your application
+function Greeting(props) {
+  return <div>
+    Hii there {props.name}
+  </div>
+}
+
+// function App() {
+//   const [count, setCount] = useState(1);
+
+//   function increaseCount() {
+//     setCount(count + 1);
+//   }
 
 
-const ToggleMessage = () => {
-  const [isVisible, setIsVisible] = useState(false); //defining a new state variable
-  // const isVisible = true;
-
-  // NOTE: You should always change stateVariable as such -> setIsVisible(!isVisible);
-
-  // when the value of a state variable changes,
-  // the component that uses the state variables re-renders
-
-  // NOTE: The components with not re-render in react if we don't have a state variable.
-  
-  return (
-    <div>
-      <button onClick={() => setIsVisible(!isVisible)}>
-        Toggle Message
-      </button>
-      {isVisible && <p>This message is conditionally rendered!</p>}
-    </div>
-  );
-};
-
-// const style = { width: 300, backgroundColor: "white", borderRadius: 10, borderColor: "grey", borderWidth: 1, padding: 30 }
-
-// function PostComponents({ name, subtitle, time, image, description }) {
-//   return <div style={style}>
+//   return <div>
 //     <div style={{ display: "flex" }}>
-//       <img src={image} style={{
-//         width: 50,
-//         height: 50,
-//         borderRadius: 50
-//       }} />
-//       <div style={{ fontSize: 15, marginLeft: 15 }}>
-//         <b>
-//           {name}
-//         </b>
-//         <div>{subtitle}</div>
-//         {/* Adding condition for time */}
-//         {(time !== undefined) ? <div style={{ display: "flex" }}>
-//           <div>{time}</div>
-//           <img src={"https://img.magnific.com/premium-vector/round-wall-clock-cartoon_119631-491.jpg?semt=ais_hybrid&w=740&q=80"} style={{ width: 20, height: 20, marginLeft: 5 }} />
-//         </div> : null}
+//       <div style={{ background: "red", borderRadius: 20, width: 20, height: 25, paddingLeft: 10, paddingTop: 5 }}>
+//         {count}
 //       </div>
 //     </div>
-//     <div style={{ fontSize: 18 }}>
-//       {description}
-//     </div>
+//     <img style={{cursor: "pointer"}} src={"https://www.citypng.com/public/uploads/preview/free-notifications-bell-outline-icon-png-701751694974381h7wblk6fpx.png"} width={40}/>
+//     {/* <button onClick={increaseCount}>Increase the count</button> */}
 //   </div>
 // }
 
+// function App() {
+//   const [posts, setPosts] = useState([]);
 
-{/* <div style={{ display: "flex", justifyContent: "center" }}>
-        <div>
-          <div>
-            <PostComponents 
-            name={"harkirat"}
-            subtitle={"20 followers"}
-            time={"2m ago"}
-            image={"https://i.pinimg.com/originals/16/f3/15/16f3158eab90cca32a1f735566c9eb22.jpg"}
-            description={"What to know how to win big? Check out how these folks won $6000 in bounties."}
-            />
-            <br></br>
-          </div>
-          <div>
-            <PostComponents 
-            name={"raman"}
-            subtitle={"Promoted"}
-            image={"https://i.pinimg.com/originals/16/f3/15/16f3158eab90cca32a1f735566c9eb22.jpg"}
-            description={"How to get hired in 2026? I lost my job in 2025, this is the roadmap I followed to get a job"}
-            />
-            <br></br>
-          </div>
-        </div>
-      </div> */}
+//   const PostComponents = posts.map(post => <PostComponent 
+//     name={post.name}
+//     subtitle={post.subtitle}
+//     time={post.title}
+//     image={post.image}
+//     description={post.description}
+//   />)
+
+//   function addPost() {
+//     setPosts([...posts, {
+//       name: "harkirat",
+//       subtitle: "1000 followers",
+//       image: "https://img.magnific.com/premium-vector/round-wall-clock-cartoon_119631-491.jpg?semt=ais_hybrid&w=740&q=80",
+//       description: "What to know how to win big? Check out how these folks won $6000 in bounties."
+//     }])
+//   }
+
+//   return (
+//     <div style={{background: "#dfe6e9", height: "150vh", }}>
+//       <button onClick={addPost}>Add Post</button>
+//       <div style={{display: "flex", justifyContent: "center" }}>
+//         <div>
+//           {PostComponents}
+//         </div>
+//       </div>
+//     </div>
+//   )
+// }
+
+
+// import { useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from './assets/vite.svg'
+// import heroImg from './assets/hero.png'
+// import './App.css'
+
+
+// function App() {
+
+//   return (
+//     <div style={{ height: "100vh", background: "#dfe6e9" }}>
+//       <ToggleMessage />
+//       <ToggleMessage />
+//       <ToggleMessage />
+//     </div>
+//   )
+// }
+
+// // structing your app into components
+// // defining a state of your application
+
+
+// const ToggleMessage = () => {
+//   let [notificationCount, setNotificationCount] = useState(0); //defining a new state variable
+//   // const isVisible = true;
+
+//   // NOTE: You should always change stateVariable as such -> setIsVisible(!isVisible);
+
+//   // when the value of a state variable changes,
+//   // the component that uses the state variables re-renders
+
+//   // NOTE: The components with not re-render in react if we don't have a state variable.
+
+//   console.log("re-render");
+//   function increment() {
+//       setNotificationCount(notificationCount + 1);
+//   }
+
+//   return (
+//     <div>
+//       <button onClick={(increment)}>
+//         Increase Count
+//       </button>
+//       {notificationCount}
+//     </div>
+//   );
+// };
+
+// // const style = { width: 300, backgroundColor: "white", borderRadius: 10, borderColor: "grey", borderWidth: 1, padding: 30 }
+
+// // function PostComponents({ name, subtitle, time, image, description }) {
+// //   return <div style={style}>
+// //     <div style={{ display: "flex" }}>
+// //       <img src={image} style={{
+// //         width: 50,
+// //         height: 50,
+// //         borderRadius: 50
+// //       }} />
+// //       <div style={{ fontSize: 15, marginLeft: 15 }}>
+// //         <b>
+// //           {name}
+// //         </b>
+// //         <div>{subtitle}</div>
+// //         {/* Adding condition for time */}
+// //         {(time !== undefined) ? <div style={{ display: "flex" }}>
+// //           <div>{time}</div>
+// //           <img src={"https://img.magnific.com/premium-vector/round-wall-clock-cartoon_119631-491.jpg?semt=ais_hybrid&w=740&q=80"} style={{ width: 20, height: 20, marginLeft: 5 }} />
+// //         </div> : null}
+// //       </div>
+// //     </div>
+// //     <div style={{ fontSize: 18 }}>
+// //       {description}
+// //     </div>
+// //   </div>
+// // }
+
+
+// {/* <div style={{ display: "flex", justifyContent: "center" }}>
+//         <div>
+//           <div>
+//             <PostComponents 
+//             name={"harkirat"}
+//             subtitle={"20 followers"}
+//             time={"2m ago"}
+//             image={"https://i.pinimg.com/originals/16/f3/15/16f3158eab90cca32a1f735566c9eb22.jpg"}
+//             description={"What to know how to win big? Check out how these folks won $6000 in bounties."}
+//             />
+//             <br></br>
+//           </div>
+//           <div>
+//             <PostComponents 
+//             name={"raman"}
+//             subtitle={"Promoted"}
+//             image={"https://i.pinimg.com/originals/16/f3/15/16f3158eab90cca32a1f735566c9eb22.jpg"}
+//             description={"How to get hired in 2026? I lost my job in 2025, this is the roadmap I followed to get a job"}
+//             />
+//             <br></br>
+//           </div>
+//         </div>
+//       </div> */}
 
 export default App
