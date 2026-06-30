@@ -1,19 +1,118 @@
 import { useState } from "react";
 import { PostComponent } from "./Post";
 
-function App() {
-  return <div>
-    hii there
-    <Greeting name={"Sujeet"} />
-    <Greeting name={"Harkirat"} />
-  </div>
-}
+const App = () => {
+  return (
+    <div>
+      {[
+        <Todo key={2} title={"Eat food"} done={false} />,
+        <Todo key={1} title={"Go to gym"} done={false} />
+      ]}
+    </div>
+  );
+};
 
-function Greeting(props) {
+
+function Todo({title, done}) {
   return <div>
-    Hii there {props.name}
+    {title} - {done ? "Done!" : "Not done!"}
   </div>
 }
+// NOTE: Compare bottom and above of this for conceptual clarity.
+// -----------------------------------------------------------------------------------------------------
+// const App = () => {
+//   const todos = [{
+//     title: "Go to gym",
+//     done: false
+//   }, {
+//     title: "Eat food",
+//     done: true
+//   }];
+//   const todosComponents = todos.map(todo => <Todo title={todo.title} done={todo.done} />)
+
+//   return (
+//     <div>
+//       {todosComponents}
+//     </div>
+//   );
+// };
+
+// function Todo({ title, done }){
+//   return <div>
+//     {title} - {done ? "Done!" : "Not done!"}
+//   </div>
+// }
+
+// ---------------------------------------------------------------------
+// const Card = ({children}) => {
+//   return (
+//     <div style={{
+//       border: '1px solid #ccc',
+//       borderRadius: '5px',
+//       padding: '20px',
+//       margin: '10px',
+//       boxShadow: '2px 2px 5px rgba(0,0,0,0.1)',
+//     }}>
+//       {children}
+//     </div>
+//   );
+// };
+
+// const App = () => {
+//   return (
+//     <div>
+//       <Card>
+//         <h2>Card Title</h2>
+//         <p>This is some content inside the card.</p>
+//       </Card>
+//       <Card>
+//         <h2>Another Card</h2>
+//         <p>This card has different content!</p>
+//       </Card>
+//     </div>
+//   );
+// };
+
+//--------------------------------------------------------------------------------------------------------------
+// function App() {
+//   const [showTimer, setShowTimer] = useState(true);
+
+//   return <div style={{ display: "flex", background: "grey" }}>
+//     <Card>
+//       <div style={{ color: "green" }}>What do you want to post?<br /><input type={"text"} /></div>
+//     </Card>
+//     <Card>
+//       <div>
+//         hii there
+//       </div>
+//     </Card>
+//   </div>
+// }
+
+// //Card where Outer structure is static and inside structure is dynamic.
+// function Card({ children }) {
+//   return <div style={{ background: "white", borderRadius: 10, color: "black", padding: 10, margin: 10 }}>
+//     Upper topbar
+//     {children}
+//     Lower topbar
+//   </div>
+// }
+
+// function App() {
+//   return <div>
+//     hii there
+//     <Greeting name={"Sujeet"} />
+//     <Greeting name={"Harkirat"} />
+//   </div>
+// }
+
+// ----------------------------------------------------------------------------------------------------------------------
+
+// function Greeting(props) {
+//   return <div>
+//     Hii there {props.name}
+//   </div>
+// }
 
 // function App() {
 //   const [count, setCount] = useState(1);
