@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.18.1/dist/axios.min.js"></script>
     <style>
         .pretty{
             background-color: red;
@@ -18,12 +19,9 @@
 </body>
 
 <script>
-    fetch("https://jsonplaceholder.typicode.com/todos")
-        .then(data => {
-            return data.json()
-        })
-        .then(data => {
-            data.forEach(todo => {
+    axios.get("https://jsonplaceholder.typicode.com/todos")
+        .then(response => {
+            response.data.forEach(todo => {
                 const divNode = document.createElement("div");
                 divNode.innerHTML = todo.title;
                 divNode.setAttribute("class", "pretty");
