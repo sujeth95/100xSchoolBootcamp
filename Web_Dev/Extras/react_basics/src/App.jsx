@@ -1,17 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import Header from "./Header";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    <h1>Code Step by Step</h1>
-    </>
+    <div>
+    <h1>First Component {sum()}</h1>
+    <Fruits />
+    <Colors />
+    </div>
   )
 }
 
-export default App
+
+const Fruits = () => {    //Learning to make and use component 
+  return (
+    <h1>Apple</h1>
+  )
+}
+
+// NOTE: While creating components always use first letter as capital while naming a component
+const Colors = () => {
+  return (
+    <h1>Red Color</h1>
+  )
+}
+
+const sum = () => {
+  return 10 + 10
+}
+
+export default App;
