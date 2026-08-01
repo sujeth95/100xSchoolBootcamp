@@ -1,0 +1,44 @@
+body {
+    background-color: #C7D3C0;
+}
+
+#container {
+    background-color: #8FA28A;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column  ;
+    margin: 10em 36em;
+    padding: 0em 0em 18em 0em;
+}
+
+h1{
+    display: flex;
+    justify-content: center;
+}
+
+#todoInput {
+    color: #232323;
+    font-size: 20px;
+    padding: 50px;
+    border-radius: 20px;
+    display: flex;
+    margin: auto;
+    text-align: start;
+}
+
+#styleButton{
+    background-color: #F7F4ED;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: large;
+}
+
+#parentDiv{
+    color: #232323;
+    margin: 1em;
+    font-size: xx-large;
+    font-weight: 800;
+}
