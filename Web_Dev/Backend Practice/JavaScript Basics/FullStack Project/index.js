@@ -7,23 +7,24 @@ const { auth, logger } = require('./middleware');
 const app = express();
 
 app.use(express.json());
+app.use(express.static('public'));
 
 const users = [];
 
 
 app.get('/', (req, res) => {
-    res.send("Welcome to the home page.")
+    res.sendFile(__dirname + "/public/index.html");
 })
 
 app.post('/signup', (req, res) => {
     const username = req.body.username;
-    const password = parseInt(req.body.password);
+    const password = req.body.password;
 
     users.push({
         username,
         password
     })
-
+    console.log(users);
     res.json({
         message: "You are signed in"
     })
@@ -31,7 +32,7 @@ app.post('/signup', (req, res) => {
 
 app.post('/signin', (req, res) => {
     const username = req.body.username;
-    const password = parseInt(req.body.password);
+    const password = req.body.password;
 
     let foundUser = null;
     let i = 0
