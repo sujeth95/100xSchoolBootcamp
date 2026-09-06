@@ -8,15 +8,25 @@
 // console.log(`The system uptime is ${os.uptime()} seconds`);
 
 // PATH MODULE....
-const path = require('path');
+// const path = require('path');
 
-console.log(path.sep);      //Separator
+// console.log(path.sep);      //Separator
 
-const filePath = path.join(__dirname + "/content/subfolder/test.txt") //joining files path
-console.log(filePath);
+// const filePath = path.join(__dirname + "/content/subfolder/test.txt") //joining files path
+// console.log(filePath);
 
-const base = path.basename(filePath)
-console.log(base);
+// const base = path.basename(filePath)
+// console.log(base);
 
-const absolute = path.resolve(__dirname + '/content/subfoler/test.txt');
-console.log(absolute);
+// const absolute = path.resolve(__dirname + '/content/subfoler/test.txt');
+// console.log(absolute);
+
+
+// Fs Module (sync)
+
+const { readFileSync, writeFileSync } = require('fs');
+
+const first = readFileSync('content/first.txt', 'utf-8');
+const second = readFileSync('content/second.text', 'utf-8');
+
+writeFileSync('./content/result-sync.txt', `Here is the result : ${first}, ${second}`)
