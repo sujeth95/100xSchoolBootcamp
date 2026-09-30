@@ -5,9 +5,15 @@
 // The function should wait for the given time and then invoke the callback
 // with `null` as the first argument and the provided value as the second argument.
 
+// function delay(ms, value, callback) {
+//     // NOTE: always look for the return statement if have to return anything.
+//     setTimeout(() => {
+//         callback(null, value)
+//     }, ms)
+// }
+
 function delay(ms, value, callback) {
-    // NOTE: always look for the return statement if have to return anything.
-    setTimeout(() => {
+     setTimeout(() => {
         callback(null, value)
     }, ms)
 }

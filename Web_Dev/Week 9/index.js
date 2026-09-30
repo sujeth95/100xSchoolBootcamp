@@ -4,7 +4,7 @@ const app = express();
 const notes = []
 
 app.post('/', (req, res) => {
-    
+
 })
 
 const PORT = 3300;

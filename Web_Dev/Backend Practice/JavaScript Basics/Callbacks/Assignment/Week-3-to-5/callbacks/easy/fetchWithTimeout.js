@@ -9,11 +9,34 @@
 // whose message is "Request Timed Out".
 
 
+// function fetchWithTimeout(url, ms, callback) {
+//     let flag = false; //false means the timer is still running, and true means the timer have stopped.
+
+//     let timerId = setTimeout(() => {
+//         if (!false) {
+//             flag = true;
+//             callback(new Error("Request Timed Out"))
+//         }
+//     }, ms)
+
+//     fetch(url, (err, data) => {
+//         if (flag) {
+//             return;
+//         }
+//         flag = true;
+//         clearTimeout(timerId);
+//         callback(err, data);
+//     })
+
+// }
+
+
 function fetchWithTimeout(url, ms, callback) {
-    let flag = false; //false means the timer is still running, and true means the timer have stopped.
+    // If flag is false means that the timer is still running and if true means that the timer have stopped.
+    let flag = false;
 
     let timerId = setTimeout(() => {
-        if (!false) {
+        if (!flag) {
             flag = true;
             callback(new Error("Request Timed Out"))
         }
@@ -27,7 +50,6 @@ function fetchWithTimeout(url, ms, callback) {
         clearTimeout(timerId);
         callback(err, data);
     })
-
 }
 
 module.exports = fetchWithTimeout;

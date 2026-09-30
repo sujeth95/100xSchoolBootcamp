@@ -7,19 +7,28 @@
 
 
 function retryOnce(fn) {
-    return function (...args) {
-      const finalCallback = args.pop();
-  
-      fn(...args, (err1, result1) => {
-        if (!err1) {
-          return finalCallback(null, result1);
-        }
-  
-        fn(...args, (err2, result2) => {
-          finalCallback(err2, result2);
-        });
-      });
-    };
-  }
-  
-  module.exports = retryOnce;
+
+  return function(...args) {
+    // In callback patterns, the callback is always the last argument
+    const callback = args[args.length - 1]; 
+    const argsWithoutCallback = args.slice(0, -1); 
+
+    // 1. Make the first attempt
+    fn(...argsWithoutCallback, (error, result) => {
+      
+      if (error) {
+        // 2. The first attempt failed. 
+        // We retry exactly once by calling fn again, this time passing the original callback.
+        // If this second attempt fails, it will automatically pass the error to the callback.
+        fn(...argsWithoutCallback, callback);
+      } else {
+        // 3. The first attempt succeeded. 
+        // We pass the successful result back to the original callback.
+        callback(null, result);
+      }
+      
+    });
+  };
+}
+
+module.exports = retryOnce;

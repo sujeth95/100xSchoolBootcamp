@@ -1,163 +1,57 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const jwt = require("jsonwebtoken");
 
 app.use(express.json());
-let USERS = [];
-let TODOS = [];
 
-// USER SIGNUP ROUTE
-app.post("/signup", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
+let todos = [];
 
-    const existingUser = USERS.find((e) => e.username === username);
-
-    if (existingUser) {
-        res.status(403).json({
-            message: "User already exists"
-        })
-    } else {
-        USERS.push({
-            username,
-            password
-        })
-        res.json({
-            message: "User signed up"
-        })
-    }
-    console.log(USERS);
-})
-
-// USER SIGNIN ROUTE
-app.post("/signin", (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-
-    const existingUser = USERS.find((e) => e.username === username && e.password === password);
-
-    if (existingUser) {
-        const token = jwt.sign({
-            username
-        }, "sujeet121")
-        res.json({
-            token,
-            message: "User signed up"
-        })
-    } else {
-        res.status(403).json({
-            message: "Invalid credentials"
-        })
-    }
-})
-
-// ACCESSING ALL TODOS.
-app.get("/todos", (req, res) => {
-    res.json({
-        TODOS
+// Retrieving all todos items
+app.get('/todos', (req, res) => {
+    return res.status(200).json({
+        todos
     })
 })
 
-// ACCESSING A TODO WITH SPECIFIC ID.
+// Retrieve a specific todo item by ID
 app.get('/todos/:id', (req, res) => {
     const id = parseInt(req.params.id);
 
-    const existingTodo = TODOS.find((e) => e.id === id);
-    if (!existingTodo) {
-        res.status(404).json({
-            message: "Todo not found"
-        })
-        return;
-    }
-    res.json({
-        id: existingTodo.id,
-        title: existingTodo.title,
-        description: existingTodo.description
-    })
-})
+    const existingId = todos.find((t) => t.id == id);
 
-// CREATING A TODO
-app.post("/todos", (req, res) => {
-    const title = req.body.title;
-    const description = req.body.description;
-
-    const existingTodo = TODOS.find((e) => e.title === title && e.description === description);
-
-    if (existingTodo) {
-        res.status(403).json({
-            message: "Your todo already exist"
-        })
-        return;
-    }
-    function randomId(todos) {
-        let id;
-        do {
-            id = Math.floor(Math.random() * 10) + 1;
-        } while (TODOS.some(t => t.id === id))
-        return id;
-    }
-    const newId = parseInt(randomId(TODOS));
-
-    TODOS.push({
-        id: newId,
-        title,
-        description
-    })
-    console.log(TODOS);
-    res.json({
-        message: "TODO created"
-    })
-    return;
-
-})
-
-// UPDATING A TODO WITH SPECIFIC ID
-app.put("/todos/:id", (req, res) => {
-    const id = parseInt(req.params.id);
-    const title = req.body.title;
-    const description = req.body.description;
-
-    const existingTodo = TODOS.find(e => e.id === id);
-    if (existingTodo) {
-        existingTodo.title = title;
-        existingTodo.description = description;
-
-        res.json({
-            id: existingTodo.id,
-            title: existingTodo.title,
-            description: existingTodo.description,
-            message: "Todo Updated"
-        })
-        return;
+    if (existingId) {
+        return res.status(200).json(existingId);
     } else {
-        res.status(404).json({
-            message: "You don't have a todo with this id"
-        })
-        return;
+        return res.status(404).json({
+            error: "Not found"
+        });
     }
 })
 
-// DELETING TODO WITH SPECIFIC ID.
-app.delete("/todos/:id", (req, res) => {
-    const id = parseInt(req.params.id);
 
-    const existingTodo = TODOS.find(e => e.id === id);
-    
-    if(existingTodo){
-        TODOS = TODOS.filter(e => e.id !== id);
-        res.json({
-            TODOS, 
-            message: "Todo Deleted"
-        })
-    } else {
-        res.status(404).json({
-            message: "Todo not found"
-        })
+// Create a new todo item
+app.post('/todos', (req, res) => {
+    const newTodo = {
+        id: Math.random(Math.floor() * 10) + 1,
+        title: req.body.title,
+        description: req.body.description
     }
 
+    todos.push(newTodo);
+
+    return res.json({
+        newTodo
+    });
 })
 
-const PORT = 4000;
-app.listen(PORT, () => {
-    console.log(`Listening on Port ${PORT}`)
+
+// Update an existing todo item by id
+app.put('/todos/:id', (req, res) => {
+    const id = req.params.id;
+
+    const existingId = todos.findIndex((t) => t.id === id);
+
+    return res.status(200).json({
+        todos[existingId].title = req.body.title,
+        
+    })
 })
