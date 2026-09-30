@@ -25,4 +25,5 @@ int main()
     } else {
         cout<<"No";
     }
+    // After branch confict checking everything works fine.
 }
