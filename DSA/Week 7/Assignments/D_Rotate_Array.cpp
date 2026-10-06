@@ -1,27 +1,39 @@
 #include <iostream>
 using namespace std;
 
-int main()
+void arrRotate()
 {
-    int x;
-    cin >> x;
-
     int n;
     cin >> n;
 
-    // Taking input from user.
-    int a[n];
+    int arr[n];
     for (int i = 0; i < n; i++)
     {
-        cin >> a[i];
+        cin >> arr[i];
     }
 
-    int y;
-    cin >> y;
+    int x;
+    cin >> x;
 
-    // Writing logic
+    for (int i = x; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+
+    for (int i = 0; i < x; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+
     for (int i = 0; i < n; i++)
     {
-        
+        arrRotate();
     }
 }

@@ -11,10 +11,21 @@ int main()
     // Taking input from the user.
     for (int i = 0; i < n; i++)
     {
-        cin >> a[i][i];
+        for (int j = 0; j < n; j++)
+        {
+            cin >> a[i][j];
+        }
     }
 
     // Writing logic.
-    
+    int ans = 0;
+    int i = 0, j = 0;
+    while (i < n and j < n)
+    {
+        ans += a[i][j];
+        i++;
+        j++;
+    }
 
+    cout << ans << endl;
 }
