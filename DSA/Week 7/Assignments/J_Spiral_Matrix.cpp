@@ -31,10 +31,28 @@ int main()
         }
 
         // ec (sr + 1 -> er)
+        for (int i = sr + 1; i <= er; i++)
+        {
+            cout << arr[i][ec] << " ";
+        }
 
-        // er (ec - 1 -> sc)
+        if (sr != er)
+        {
+            // er (ec - 1 -> sc)
+            for (int j = ec - 1; j >= sc; j--)
+            {
+                cout << arr[er][j] << " ";
+            }
+        }
 
-        // sc (er - 1 -> sr + 1)
+        if (sc != ec)
+        {
+            // sc (er - 1 -> sr + 1)
+            for (int i = er - 1; i >= sr + 1; i--)
+            {
+                cout << arr[i][sc] << " ";
+            }
+        }
 
         sr++;
         er--;
